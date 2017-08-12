@@ -33,6 +33,21 @@ the generation of a class list and an automatic constructor.
 %end
 */
 
+%hook PreferencesAppController
+
+- (void)applicationDidBecomeActive:(id)arg {
+  %orig;
+  [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
+- (void)applicationDidEnterBackground:(id)arg {
+  %orig;
+  [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
+
+%end
+
 %hook GeneralController
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
